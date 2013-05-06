@@ -32,6 +32,12 @@ best_k=$( $DIR/kmergenie/kmergenie $1 -e 1  | grep "^best" | awk '{print $3}')
 
 echo "best k: $best_k"
 
+if [ $best_k -lt 1 ]
+then
+    echo "kmergenie could not detect a best k; aborting"
+    exit 1
+fi
+
 # ------------------------------
 # minia
 

@@ -1,8 +1,11 @@
 external requirements:
 
 - R
-- VGAM package of R
 - python_graph_core library for Python
 - python_graph_dot library for Python
+
+make sure that:
+- the ./minia symlink points to minia
+- the ./kmergenie symlink points to kmergenie
 
 then type `make`
