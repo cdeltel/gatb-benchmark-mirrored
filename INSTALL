@@ -1,0 +1,8 @@
+external requirements:
+
+- R
+- VGAM package of R
+- python_graph_core library for Python
+- python_graph_dot library for Python
+
+then type `make`
