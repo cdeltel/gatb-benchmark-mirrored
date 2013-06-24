@@ -59,8 +59,7 @@ with open(list_reads,"w") as f:
 
 print "running kmergenie"
 
-k = execute('kmergenie/kmergenie', "%s -e 100" % list_reads)
-# -e 1 is for tiny genomes, -e 10 is for bacterial, -e 1000 is for eukaryotic. some day this is will be auto-computed by kmergenie
+k = execute('kmergenie/kmergenie', "%s" % list_reads)
 
 print "best k:", k
 
