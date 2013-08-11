@@ -1,0 +1,9 @@
+environment: cyberstar231-workdir
+
+reads: ../test-data/read50x_ref10K_e001.fasta.gz
+temp_dir: ~/work/
+
+max_disk: 20000
+max_memory: 4000
+min_abundance: 3
+kmer_size: 22

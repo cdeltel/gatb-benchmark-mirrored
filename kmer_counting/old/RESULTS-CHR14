@@ -1,0 +1,51 @@
+real	20m7.186s
+real	16m25.469s
+real	18m42.092s
+real	16m53.579s
+real	23m28.877s
+real	19m5.152s
+real	15m46.897s
+real	17m7.741s
+--------------
+dsk (gatb gatb-8-threads svn svn-8-threads)
+real	30m23.892s
+real	18m55.561s
+real	16m25.853s
+real	17m33.777s
+kmc
+real    29m34.209s
+--------------
+dsk (gatb gatb-8-threads svn svn-8-threads)
+real	28m48.585s
+real	23m1.495s
+real	17m48.861s
+real	20m28.719s
+--------------
+dsk (gatb gatb-8-threads svn svn-8-threads)
+real	25m59.016s
+real	28m34.970s
+real	17m10.148s
+real	24m49.923s
+kmc
+real    31m35.687s
+--------------
+dsk (gatb gatb-8-threads svn svn-8-threads)
+real	26m35.599s
+real	21m53.875s
+real	17m36.809s
+real	18m32.136s
+kmc
+real	29m47.606s
+--------------
+dsk (gatb gatb-8-threads svn svn-8-threads)
+kmc
+real	33m47.303s
+--------------
+dsk (gatb gatb-8-threads svn svn-8-threads)
+real	29m41.337s
+real	22m58.535s
+real	16m14.924s
+real	17m28.831s
+kmc
+real	34m32.253s
+--------------

@@ -1,0 +1,26 @@
+program:
+  - description: DSK GATB
+    executable: dsk-gatb-1thread
+    project: DSK-GATB
+    command line: time memused ~/gatb-tools/gatb-tools/tools/dsk/dsk -db %(reads)s -kmer-size %(kmer_size)s -prefix %(temp_dir)s/dsk-gatb -max-memory %(max_memory)s -max-disk %(max_disk)s -nks %(min_abundance)s
+
+  - description: DSK GATB 8 threads
+    executable: dsk-gatb-8threads
+    project: DSK-GATB
+    command line: time memused ~/gatb-tools/gatb-tools/tools/dsk/dsk -db %(reads)s -kmer-size %(kmer_size)s -prefix %(temp_dir)s/dsk-gatb-8threads -max-memory %(max_memory)s -max-disk %(max_disk)s -nks %(min_abundance)s -nb-cores 8
+
+  - description: DSK SVN
+    executable: dsk-svn-uint128-1thread
+    project: DSK
+    command line: make omp=0 -C ~/dsk ; time memused ~/dsk/dsk %(reads)s %(kmer_size)s -o %(temp_dir)s/dsk-svn -m %(max_memory)s -d %(max_disk)s -t %(min_abundance)s
+
+  - description: DSK SVN 8 threads
+    executable: dsk-svn-uint128-8threads
+    project: DSK
+    command line: make omp=1 -C ~/dsk ; time memused ~/dsk/dsk %(reads)s %(kmer_size)s -o %(temp_dir)s/dsk-svn-8threads -m %(max_memory)s -d %(max_disk)s -t %(min_abundance)s
+
+  - description: KMC
+    executable: kmc
+    project: KMC
+    command line: time memused ~/tools/kmc/kmc -k%(kmer_size)s -m4 -ci2 %(reads)s  %(temp_dir)s/kmc.res %(temp_dir)s/ 
+

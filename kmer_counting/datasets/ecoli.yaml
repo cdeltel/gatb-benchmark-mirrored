@@ -1,0 +1,9 @@
+environment: cyberstar231-workdir
+
+reads: /gpfs/home/rxc48/nobackup/reads/ecoli/MiSeq_Ecoli_MG1655_110721_PF.fastq
+temp_dir: ~/work/
+
+max_disk: 20000
+max_memory: 4000
+min_abundance: 3
+kmer_size: 22
