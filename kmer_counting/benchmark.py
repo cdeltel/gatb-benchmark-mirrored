@@ -21,6 +21,7 @@ def run(command):
     return rc, stdout, stderr
 
 environment = b["environment"]
+benchmark_prefix = b["benchmark"]
 
 def analyze_log(stdout, stderr):
     memory = 0
@@ -47,7 +48,7 @@ for prog_item in b["program"]:
     git = False
     if "DSK SVN" in description:
         svn = True
-        svn_folder = "~/dsk"
+        svn_folder = "~/dsk" if "svn_dir" not in b else b["svn_dir"]
 
     if "DSK GATB" in description:
         git = True
@@ -57,14 +58,16 @@ for prog_item in b["program"]:
         revision = run("svn info %s | sed -ne 's/^Revision: //p'" % svn_folder)[1].strip()
 
     if git:
-        revision = run("cd ~/gatb-tools/ &&  git log -n 1 --pretty='format:%h (%ci)'")[1].strip()
+        date = run("cd ~/gatb-tools/ &&  git log -n 1 --pretty='format:%ci'")[1].strip().split()[0]
+        revision = run("cd ~/gatb-tools/ &&  git log -n 1 --pretty='format:%h'")[1].strip()
+        revision += " " + date
 
     if "KMC" in description:
         revision = "0.3"
 
     rc, stdout, stderr = run(cmd)
-    if rc:
-        sys.exit("Error running command: %s" % cmd)
+    if rc > 1: # old versions of DSK returned 1.. i know..
+        sys.exit("Error running command: %s \nstdout: %s\nstderr: %s" % (cmd,stdout,stderr))
     
     time, memory = analyze_log(stdout,stderr)
 
@@ -72,10 +75,10 @@ for prog_item in b["program"]:
     url = "http://codespeed.genouest.org/result/add/"
     branch = "default"
 
-    benchmark = "Time"
+    benchmark = benchmark_prefix + " (time)"
     result_value = time
     save_to_speedcenter(url, project, revision, executable, benchmark, result_value, branch=branch, environment=environment)
 
-    benchmark = "Memory"
+    benchmark = benchmark_prefix + " (memory)"
     result_value = memory
     save_to_speedcenter(url, project, revision, executable, benchmark, result_value, branch=branch, environment=environment)

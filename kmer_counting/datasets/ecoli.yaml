@@ -1,4 +1,5 @@
 environment: cyberstar231-workdir
+benchmark: E. coli MG1655
 
 reads: /gpfs/home/rxc48/nobackup/reads/ecoli/MiSeq_Ecoli_MG1655_110721_PF.fastq
 temp_dir: ~/work/
