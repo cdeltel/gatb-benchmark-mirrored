@@ -1,0 +1,10 @@
+environment: cyberstar231-workdir
+temp_dir: ~/work/
+
+dsk_svn_dir: ~/dsk
+gatb_tools_dir: ~/gatb-tools/gatb-tools/
+kmc_dir: ~/tools/kmc
+
+chr14_reads: /gpfs/home/rxc48/nobackup/reads/chr14/shortjump.fastq
+ecoli_reads: /gpfs/home/rxc48/nobackup/reads/ecoli/MiSeq_Ecoli_MG1655_110721_PF.fastq
+test_reads: /gpfs/home/rxc48/gatb-benchmark/test-data/read50x_ref10K_e001.fasta.gz

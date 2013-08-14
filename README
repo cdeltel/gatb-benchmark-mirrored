@@ -1,4 +1,4 @@
 What happened here: 
 - the former gatb-benchmark pipeline is now in the gatb-pipeline repository
 - please use the gatb-benchmark repo to host scripts that are relevant to 
-  benchmarks only, not to the pipeline itself
+  external benchmarks of the pipeline only. Do not put pipeline components here.

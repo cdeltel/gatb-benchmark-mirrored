@@ -9,10 +9,12 @@ import yaml
 from codespeed_client import save_to_speedcenter
 
 if len(sys.argv) < 1:
-    sys.exit("arguments: file1.yaml file2.yaml ...")
+    sys.exit("arguments: [benchmark].yaml [dataset].yaml [environment].yaml [...]\nE.g kmer_counting.yaml datasets/test.yaml environments/cyberstar231-workdir.yaml")
 
 config = '\n'.join([l for l in fileinput.input(sys.argv[1:])])
 b = yaml.load(config)
+
+b["script_dir"] = os.path.dirname(os.path.realpath(__file__))
 
 def run(command):
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -38,7 +40,7 @@ def analyze_log(stdout, stderr):
 
 for prog_item in b["program"]:
     description = prog_item["description"] 
-    cmd = prog_item["command line"] % b
+    cmd = (prog_item["command line"] % b ) % b # because %(reads)s redirect to %(ecoli_reads)s
     executable = prog_item["executable"]
     project = prog_item["project"]
 

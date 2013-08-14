@@ -1,8 +1,6 @@
-environment: cyberstar231-workdir
 benchmark: Chr. 14 shortjump
 
-reads: /gpfs/home/rxc48/nobackup/reads/chr14/shortjump.fastq
-temp_dir: ~/work/
+reads: %(chr14_reads)s
 
 max_disk: 20000
 max_memory: 4000

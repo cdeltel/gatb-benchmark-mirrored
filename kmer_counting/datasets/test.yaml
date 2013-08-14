@@ -1,8 +1,6 @@
-environment: cyberstar231-workdir
 benchmark: Test dataset
 
-reads: /gpfs/home/rxc48/gatb-benchmark/test-data/read50x_ref10K_e001.fasta.gz
-temp_dir: ~/work/
+reads: %(test_reads)s
 
 max_disk: 20000
 max_memory: 4000
