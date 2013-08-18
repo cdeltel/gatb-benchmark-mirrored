@@ -1,6 +1,6 @@
 benchmark: Test dataset
 
-reads: %(test_reads)s
+reads: test_reads
 
 max_disk: 20000
 max_memory: 4000

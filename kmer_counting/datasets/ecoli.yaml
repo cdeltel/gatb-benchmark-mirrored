@@ -1,6 +1,6 @@
 benchmark: E. coli MG1655
 
-reads: %(ecoli_reads)s
+reads: ecoli_reads
 
 max_disk: 20000
 max_memory: 4000

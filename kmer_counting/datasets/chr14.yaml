@@ -1,6 +1,6 @@
 benchmark: Chr. 14 shortjump
 
-reads: %(chr14_reads)s
+reads: chr14_reads
 
 max_disk: 20000
 max_memory: 4000
