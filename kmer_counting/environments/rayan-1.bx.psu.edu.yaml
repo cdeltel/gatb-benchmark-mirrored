@@ -1,0 +1,10 @@
+environment: rayan-1.bx.psu.edu
+temp_dir: /scratch/tmp
+
+dsk_svn_dir: ~/dsk
+gatb_tools_dir: ~/gatb-tools/gatb-tools/
+kmc_dir: ~/tools/kmc
+
+chr14_reads: /scratch/reads/chr14/shortjump.fastq
+ecoli_reads: /scratch/reads/ecoli-miseq/MiSeq_Ecoli_MG1655_110721_PF.fastq
+test_reads: ~/dsk/test/read50x_ref10K_e001.fasta.gz

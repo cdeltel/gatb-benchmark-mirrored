@@ -43,8 +43,9 @@ def analyze_log(stdout, stderr):
             print memory,line
     for line in stderr.split('\n'):
         if line.startswith("real"):
-            t = datetime.strptime(line.split()[-1],"%Mm%S.%fs")
-            time = "%0.2f" % (t.minute + t.second/60.0)
+            time_string = line.split()[-1] # format: "[minutes]m[seconds].[millisecs]s"
+            mins, secs, millisecs, nothing = re.split('m|\.|s',time_string)
+            time = "%0.2f" % (int(mins) + int(secs)/60.0)
     return time, memory
 
 for prog_item in b["program"]:
@@ -59,18 +60,21 @@ for prog_item in b["program"]:
 
     print "Runnning",description
     dsk = "DSK" in project
-    svn = False
-    git = False
+    svn, git, svn_folder, git_folder = False, False, None, None
     if "DSK SVN" in description:
         svn = True
         svn_folder = "~/dsk" if "svn_dir" not in b else b["svn_dir"]
+        print "It's a dsk SVN"
 
     if "DSK GATB" in description:
         git = True
         git_folder = "~/gatb-tools/gatb-tools/"
+        print "It's a dsk GIT"
 
+    revision = None
     if svn:
         revision = run("svn info %s | sed -ne 's/^Revision: //p'" % svn_folder)[1].strip()
+        print "Got revision from SVN (%s): %s" % (svn_folder, revision)
 
     if git:
         date = run("cd ~/gatb-tools/ &&  git log -n 1 --pretty='format:%ci'")[1].strip().split()[0]
@@ -79,6 +83,9 @@ for prog_item in b["program"]:
 
     if "KMC" in description:
         revision = "0.3"
+
+    if revision is None or len(revision) == 0:
+        sys.exit("Error retrieving revision for program: %s (svn folder: %s git folder: %s)" % (description, svn_folder, git_folder))
 
     rc, stdout, stderr = run(cmd)
     if rc > 1 or ('error' in stdout.lower()) or ('error' in stderr.lower()): # old versions of DSK returned 1.. i know..
@@ -90,7 +97,7 @@ for prog_item in b["program"]:
     
     time, memory = analyze_log(stdout,stderr)
 
-    print "Sending benchmark data"
+    print "Sending benchmark data for revision",revision
     url = "http://codespeed.genouest.org/result/add/"
     branch = "default"
 

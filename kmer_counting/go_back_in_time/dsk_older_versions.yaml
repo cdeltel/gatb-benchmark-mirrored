@@ -1,4 +1,4 @@
-svn_dir: ~/work/dsk
+svn_dir: /scratch/tmp/dsk
 
 program:
   - description: DSK SVN

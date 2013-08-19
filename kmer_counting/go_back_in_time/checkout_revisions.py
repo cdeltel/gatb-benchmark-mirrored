@@ -1,5 +1,6 @@
 #dataset="../datasets/test.yaml"
 dataset="../datasets/chr14.yaml"
+temp_dir = "//scratch/tmp"
 
 import sys, os, subprocess
 def run(command):
@@ -19,17 +20,21 @@ with open("list_revisions") as f:
             continue
         if not revision[1:].isdigit():
             continue
-        rc, o, e = run("rm -Rf ~/work/dsk")
+        rc, o, e = run("rm -Rf %s/dsk" % temp_dir)
         print "Checking out DSK revision",revision
-        rc, o, e = run("cd ~/work && svn checkout -r %s svn+ssh://chikhi@scm.gforge.inria.fr/svnroot/projetssymbiose/dsk" % revision)
+        rc, o, e = run("cd %s && svn checkout -r %s \
+                       svn+ssh://chikhi@scm.gforge.inria.fr/svnroot/projetssymbiose/dsk" \
+                       % (temp_dir,revision))
         if rc:
             exit("Error checking out DSK revision %s" % revision)
         print "Checking out Minia revision",revision
-        rc, o, e = run("rm -Rf ~/work/dsk/minia && cd ~/work/dsk && svn checkout -r %s svn+ssh://chikhi@scm.gforge.inria.fr/svnroot/projetssymbiose/minia/trunk && mv trunk minia" % revision)
+        rc, o, e = run("rm -Rf %s/dsk/minia && cd %s/dsk && svn checkout -r %s\
+                       svn+ssh://chikhi@scm.gforge.inria.fr/svnroot/projetssymbiose/minia/trunk\
+                       && mv trunk minia" % (temp_dir, temp_dir, revision))
         if rc:
             exit("Error checking out Minia revision %s" % revision)
         print "Running benchmark revision",revision
-        rc, o, e = run("python ../benchmark.py dsk_older_versions.yaml %s ../environments/cyberstar231-workdir.yaml" % dataset)
+        rc, o, e = run("python ../benchmark.py dsk_older_versions.yaml %s ../environments/rayan-1.bx.psu.edu.yaml" % dataset)
         if rc:
             exit("Error running benchmark revision %s; \nstderr: %s\nstdout: %s" % (revision,e,o))
         print "bench:", o,e
