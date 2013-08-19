@@ -44,6 +44,7 @@ def analyze_log(stdout, stderr):
     for line in stderr.split('\n'):
         if line.startswith("real"):
             time_string = line.split()[-1] # format: "[minutes]m[seconds].[millisecs]s"
+            import re
             mins, secs, millisecs, nothing = re.split('m|\.|s',time_string)
             time = "%0.2f" % (int(mins) + int(secs)/60.0)
     return time, memory
