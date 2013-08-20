@@ -13,7 +13,7 @@ if len(sys.argv) < 1:
 """"arguments: [benchmark].yaml [dataset].yaml [environment].yaml [...]
 E.g kmer_counting.yaml datasets/test.yaml environments/cyberstar231-workdir.yaml
 Options:
-    --only <executable>    Only run benchmarks for <executable>
+    --only <string>    Only run benchmarks for executable or description matching <string>
 """)
 
 only = None if "--only" not in sys.argv else sys.argv[sys.argv.index("--only")+1].strip()
@@ -56,7 +56,7 @@ for prog_item in b["program"]:
     executable = prog_item["executable"]
     project = prog_item["project"]
 
-    if only and executable != only:
+    if only and not (only in executable or only in description):
         continue
 
     print "Runnning",description
@@ -64,12 +64,12 @@ for prog_item in b["program"]:
     svn, git, svn_folder, git_folder = False, False, None, None
     if "DSK SVN" in description:
         svn = True
-        svn_folder = "~/dsk" if "svn_dir" not in b else b["svn_dir"]
+        svn_folder = b["dsk_svn_dir"]
         print "It's a dsk SVN"
 
     if "DSK GATB" in description:
         git = True
-        git_folder = "~/gatb-tools/gatb-tools/"
+        git_folder = b["gatb_tools_dir"]
         print "It's a dsk GIT"
 
     revision = None
@@ -78,8 +78,8 @@ for prog_item in b["program"]:
         print "Got revision from SVN (%s): %s" % (svn_folder, revision)
 
     if git:
-        date = run("cd ~/gatb-tools/ &&  git log -n 1 --pretty='format:%ci'")[1].strip().split()[0]
-        revision = run("cd ~/gatb-tools/ &&  git log -n 1 --pretty='format:%h'")[1].strip()
+        date = run("cd %s &&  git log -n 1 --pretty='format:%ci'" % git_folder)[1].strip().split()[0]
+        revision = run("cd %s &&  git log -n 1 --pretty='format:%h'" % git_folder)[1].strip()
         revision += " " + date
 
     if "KMC" in description:

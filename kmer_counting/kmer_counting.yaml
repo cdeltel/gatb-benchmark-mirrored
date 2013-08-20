@@ -12,12 +12,12 @@ program:
   - description: DSK SVN
     executable: dsk-svn-uint128-1thread
     project: DSK
-    command line: make omp=0 -C ~/dsk ; time %(script_dir)s/../memused %(dsk_svn_dir)s/dsk %(reads)s %(kmer_size)s -o %(temp_dir)s/dsk-svn -m %(max_memory)s -d %(max_disk)s -t %(min_abundance)s
+    command line: make omp=0 -C %(dsk_svn_dir)s ; time %(script_dir)s/../memused %(dsk_svn_dir)s/dsk %(reads)s %(kmer_size)s -o %(temp_dir)s/dsk-svn -m %(max_memory)s -d %(max_disk)s -t %(min_abundance)s
 
   - description: DSK SVN 8 threads
     executable: dsk-svn-uint128-8threads
     project: DSK
-    command line: make omp=1 -C ~/dsk ; time %(script_dir)s/../memused %(dsk_svn_dir)s/dsk %(reads)s %(kmer_size)s -o %(temp_dir)s/dsk-svn-8threads -m %(max_memory)s -d %(max_disk)s -t %(min_abundance)s
+    command line: make omp=1 -C %(dsk_svn_dir)s ; time %(script_dir)s/../memused %(dsk_svn_dir)s/dsk %(reads)s %(kmer_size)s -o %(temp_dir)s/dsk-svn-8threads -m %(max_memory)s -d %(max_disk)s -t %(min_abundance)s
 
   - description: KMC
     executable: kmc
