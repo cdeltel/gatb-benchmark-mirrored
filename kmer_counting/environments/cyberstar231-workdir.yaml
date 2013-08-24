@@ -1,5 +1,5 @@
 environment: cyberstar231-workdir
-temp_dir: ~/work/
+temp_dir: /tmp/kmercounting/
 
 dsk_svn_dir: ~/dsk
 gatb_tools_dir: ~/gatb-tools/gatb-tools/

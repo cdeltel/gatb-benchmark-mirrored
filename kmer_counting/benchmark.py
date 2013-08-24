@@ -78,8 +78,8 @@ for prog_item in b["program"]:
         print "Got revision from SVN (%s): %s" % (svn_folder, revision)
 
     if git:
-        date = run("cd %s &&  git log -n 1 --pretty='format:%ci'" % git_folder)[1].strip().split()[0]
-        revision = run("cd %s &&  git log -n 1 --pretty='format:%h'" % git_folder)[1].strip()
+        date = run("cd %s &&  git log -n 1 --pretty='format:%%ci'" % git_folder)[1].strip().split()[0]
+        revision = run("cd %s &&  git log -n 1 --pretty='format:%%h'" % git_folder)[1].strip()
         revision += " " + date
 
     if "KMC" in description:

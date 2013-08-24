@@ -21,7 +21,7 @@ temp_dir = b["temp_dir"]
 
 #override dsk svn dir
 with open("addentum.yaml",'w') as f:
-    f.write("dsk_svn_dir: %s" % (temp_dir))
+    f.write("dsk_svn_dir: %s/dsk" % (temp_dir))
 
 with open("list_revisions") as f:
     for line in f:
