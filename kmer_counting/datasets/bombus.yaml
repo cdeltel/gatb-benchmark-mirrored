@@ -1,0 +1,9 @@
+benchmark: Bombus frag
+
+reads: bombus_reads
+
+max_disk: 20000
+max_memory: 4000
+# note: KMC cannot do it in less than 7 GB
+min_abundance: 3
+kmer_size: 22
