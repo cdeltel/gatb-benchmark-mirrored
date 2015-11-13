@@ -1,3 +1,6 @@
 [submodule "cpulimit"]
 	path = cpulimit
 	url = https://github.com/opsengine/cpulimit.git
+[submodule "submodule-sandbox"]
+	path = submodule-sandbox
+	url = https://github.com/cdeltel/sandbox
